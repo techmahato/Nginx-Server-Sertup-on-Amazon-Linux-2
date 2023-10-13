@@ -1,0 +1,55 @@
+
+Step 1: Connect to Your Amazon Linux 2 Instance
+
+Step 2: Update the System Packages
+sudo yum update -y
+
+Step 3: Install Nginx
+sudo amazon-linux-extras install nginx1.12 -y
+
+Step 4: Start and Enable Nginx Service
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl status nginx
+
+Step 5: Check Nginx Default Page From Browser.
+http://PublicIP
+
+Step 6: Configure Virtual Hosts
+sudo vi /etc/nginx/conf.d/server1.techmahato.com.conf
+server {
+    listen 80;
+    server_name server1.techmahato.com www.server1.techmahato.com;
+
+    root /var/www/html/server1.techmahato.com;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+
+Step 7: Create Document Root Directories
+sudo mkdir -p /var/www/html/server1.techmahato.com
+
+
+Step 8: Create Sample HTML Files
+
+echo "<h1>Welcome to Server1.techmahato.com</h1>" | sudo tee /var/www/html/server1.techmahato.com/index.html
+
+Step 9: Set Permissions
+sudo chown -R nginx:nginx /var/www/html/server1.techmahato.com
+
+Step 10: Check Configuration Syntax & Restart Nginx Service
+sudo nginx -t
+sudo systemctl restart nginx
+
+Step 11: Check Nginx Port Listening
+sudo netstate -plunt
+
+Step 12: Update DNS Records
+
+Step 13: Test the Configuration
+
+Click Below & Watch Linux AWS Project Hands-On Videos Playlist in Hindi.
